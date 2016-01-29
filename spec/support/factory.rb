@@ -23,4 +23,9 @@ FactoryGirl.define do
     sequence(:id) {|n| n }
     sequence(:name) {|n| "User ##{n}"}
   end
+
+  factory :error, class: MyApp::StandardError do
+    skip_create
+    sequence(:message) {|n| "Error message #{n}"}
+  end
 end

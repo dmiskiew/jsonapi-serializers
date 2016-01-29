@@ -14,6 +14,10 @@ module MyApp
     attr_accessor :post
   end
 
+  class StandardError < ::StandardError
+    attr_accessor :message
+  end
+
   class User
     attr_accessor :id
     attr_accessor :name
@@ -29,6 +33,18 @@ module MyApp
 
     has_one :author
     has_many :long_comments
+  end
+
+  class StandardErrorSerializer
+    include JSONAPI::ErrorSerializer
+
+    def status
+      422
+    end
+
+    def detail
+      "Error details"
+    end
   end
 
   class LongCommentSerializer
@@ -48,6 +64,18 @@ module MyApp
   end
 
   # More customized, one-off serializers to test particular behaviors:
+
+  class SimplestErrorSerializer
+    include JSONAPI::ErrorSerializer
+
+    def status
+      422
+    end
+
+    def detail
+      "Error details"
+    end
+  end
 
   class SimplestPostSerializer
     include JSONAPI::Serializer
