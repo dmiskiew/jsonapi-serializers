@@ -25,6 +25,7 @@ module JSONAPI
 
     module InstanceMethods
       attr_accessor :error
+      attr_accessor :object
       attr_accessor :context
 
       def initialize(object, options = {})
